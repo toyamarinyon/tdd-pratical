@@ -1,12 +1,11 @@
-export class Dollar {
-  private amount: number
+import { Money } from '../money'
+
+export class Dollar extends Money {
   constructor(amount: number) {
+    super()
     this.amount = amount
   }
   times(multiplayer: number) {
     return new Dollar(this.amount * multiplayer)
-  }
-  equals(dollar: Dollar) {
-    return this.amount === dollar.amount
   }
 }
