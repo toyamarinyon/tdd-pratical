@@ -1,0 +1,17 @@
+{
+  "name": "tdd-pratical",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:toyamarinyon/tdd-pratical.git",
+  "author": "toyama satoshi <toyamarinyon@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.2.102",
+    "@swc/jest": "^0.2.5",
+    "@types/jest": "^27.0.2",
+    "jest": "^27.3.1"
+  }
+}
