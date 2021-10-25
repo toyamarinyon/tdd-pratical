@@ -22,3 +22,8 @@ test('franc equality', () => {
   expect(franc(5).equals(franc(5))).toBeTruthy()
   expect(franc(5).equals(franc(6))).toBeFalsy()
 })
+
+test('currency', () => {
+  expect(dollar(1).getCurrency()).toBe('USD')
+  expect(franc(1).getCurrency()).toBe('CHF')
+})

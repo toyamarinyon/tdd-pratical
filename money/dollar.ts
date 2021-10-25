@@ -1,7 +1,8 @@
 import { Money } from './money'
+import { dollar } from './money-factory'
 
 export class Dollar extends Money {
   times(multiplayer: number) {
-    return new Dollar(this.amount * multiplayer)
+    return dollar(this.amount * multiplayer)
   }
 }
