@@ -1,3 +1,5 @@
+import { Franc } from './franc'
+import { Money } from './money'
 import { dollar, franc } from './money-factory'
 
 test('multiplication', () => {
@@ -26,4 +28,8 @@ test('franc equality', () => {
 test('currency', () => {
   expect(dollar(1).getCurrency()).toBe('USD')
   expect(franc(1).getCurrency()).toBe('CHF')
+})
+
+test('different class equality', () => {
+  expect(new Money(10, 'CHF').equals(new Franc(10, 'CHF'))).toBeTruthy()
 })

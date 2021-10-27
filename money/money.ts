@@ -1,4 +1,4 @@
-export abstract class Money {
+export class Money {
   protected amount: number
   protected currency: string
   constructor(amount: number, currency: string) {
@@ -7,14 +7,12 @@ export abstract class Money {
   }
 
   equals(money: Money) {
-    return (
-      money.constructor.name === this.constructor.name &&
-      this.amount === money.amount
-    )
+    return this.currency === money.currency && this.amount === money.amount
   }
   getCurrency() {
     return this.currency
   }
-  abstract times(multiplayer: number): Money
-
+  times(multiplayer: number) {
+    return new Money(this.amount * multiplayer, this.currency)
+  }
 }
