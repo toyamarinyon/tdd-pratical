@@ -1,4 +1,5 @@
 import { Expression } from './expression'
+import { Sum } from './sum'
 
 export class Money implements Expression {
   protected amount: number
@@ -17,7 +18,13 @@ export class Money implements Expression {
   times(multiplayer: number) {
     return new Money(this.amount * multiplayer, this.currency)
   }
-  plus(money: Money): Expression {
-    return new Money(this.amount + money.amount, this.currency)
+  plus(added: Money): Expression {
+    return new Sum(this, added)
+  }
+  getAmount() {
+    return this.amount
+  }
+  reduce(to: string) {
+    return this
   }
 }

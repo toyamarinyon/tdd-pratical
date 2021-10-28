@@ -1,5 +1,6 @@
 import { Bank } from './bank'
 import { dollar, franc } from './money-factory'
+import { Sum } from './sum'
 
 test('multiplication', () => {
   const five = dollar(5)
@@ -24,4 +25,25 @@ test('simple addition', () => {
   const bank = new Bank()
   const reduced = bank.reduce(sum, 'USD')
   expect(reduced).toStrictEqual(dollar(10))
+})
+
+test('plus returns sum', () => {
+  const five = dollar(5)
+  const result = five.plus(five)
+  const sum = result as Sum
+  expect(five).toBe(sum.augend)
+  expect(five).toBe(sum.addend)
+})
+
+test('reduce sum', () => {
+  const sum = new Sum(dollar(3), dollar(4))
+  const bank = new Bank()
+  const result = bank.reduce(sum, 'USD')
+  expect(result).toStrictEqual(dollar(7))
+})
+
+test('reduce money', () => {
+  const bank = new Bank()
+  const result = bank.reduce(dollar(1), 'USD')
+  expect(dollar(1)).toStrictEqual(result)
 })
