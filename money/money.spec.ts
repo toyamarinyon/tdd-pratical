@@ -47,3 +47,10 @@ test('reduce money', () => {
   const result = bank.reduce(dollar(1), 'USD')
   expect(dollar(1)).toStrictEqual(result)
 })
+
+test('reduce money difference currency', () => {
+  const bank = new Bank()
+  bank.addRate('CHF', 'USD', 2)
+  const result = bank.reduce(franc(2), 'USD')
+  expect(result).toStrictEqual(dollar(1))
+})
