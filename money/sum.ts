@@ -15,4 +15,10 @@ export class Sum implements Expression {
       this.addend.reduce(bank, to).getAmount()
     return new Money(amount, to)
   }
+  plus(addend: Expression) {
+    return new Sum(this, addend)
+  }
+  times(multiplier: number) {
+    return new Sum(this.augend.times(multiplier), this.addend.times(multiplier))
+  }
 }

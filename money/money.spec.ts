@@ -1,4 +1,5 @@
 import { Bank } from './bank'
+import { Money } from './money'
 import { dollar, franc } from './money-factory'
 import { Sum } from './sum'
 
@@ -66,4 +67,29 @@ test('mixed addition', () => {
   bank.addRate('CHF', 'USD', 2)
   const result = bank.reduce(fiveBucks.plus(tenFrancs), 'USD')
   expect(result).toStrictEqual(dollar(10))
+})
+
+test('sum plus money', () => {
+  const fiveBucks = dollar(5)
+  const tenFrancs = franc(10)
+  const bank = new Bank()
+  bank.addRate('CHF', 'USD', 2)
+  const sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks)
+  const result = bank.reduce(sum, 'USD')
+  expect(result).toStrictEqual(dollar(15))
+})
+
+test('sum times', () => {
+  const fiveBucks = dollar(5)
+  const tenFrancs = franc(10)
+  const bank = new Bank()
+  bank.addRate('CHF', 'USD', 2)
+  const sum = new Sum(fiveBucks, tenFrancs).times(2)
+  const result = bank.reduce(sum, 'USD')
+  expect(result).toStrictEqual(dollar(20))
+})
+
+test.skip('plus same currency returns money', () => {
+  const sum = dollar(1).plus(dollar(1))
+  expect(sum).toBeInstanceOf(Money)
 })
