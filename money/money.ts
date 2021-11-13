@@ -16,10 +16,10 @@ export class Money implements Expression {
   getCurrency() {
     return this.currency
   }
-  times(multiplayer: number) {
+  times(multiplayer: number): Expression {
     return new Money(this.amount * multiplayer, this.currency)
   }
-  plus(added: Money): Expression {
+  plus(added: Expression): Expression {
     return new Sum(this, added)
   }
   getAmount() {

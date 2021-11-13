@@ -4,8 +4,8 @@ import { Sum } from './sum'
 
 test('multiplication', () => {
   const five = dollar(5)
-  expect(five.times(2).equals(dollar(10))).toBeTruthy()
-  expect(five.times(3).equals(dollar(15))).toBeTruthy()
+  expect(five.times(2)).toStrictEqual(dollar(10))
+  expect(five.times(3)).toStrictEqual(dollar(15))
 })
 
 test('equality', () => {
@@ -57,4 +57,13 @@ test('reduce money difference currency', () => {
 
 test('identity rate', () => {
   expect(new Bank().rate('USD', 'USD')).toBe(1)
+})
+
+test('mixed addition', () => {
+  const fiveBucks = dollar(5)
+  const tenFrancs = franc(10)
+  const bank = new Bank()
+  bank.addRate('CHF', 'USD', 2)
+  const result = bank.reduce(fiveBucks.plus(tenFrancs), 'USD')
+  expect(result).toStrictEqual(dollar(10))
 })
